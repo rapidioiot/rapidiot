@@ -3,3 +3,28 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.nodes {
+  color: green;
+  margin-right: 100px; 
+  margin-left: 100px;
+}
+
+th, td {
+  padding: 15px;
+}
+
+.input {
+  margin-right: 150px;
+  margin-left: 150px;
+}
+
+.dropdown {
+  margin-right: 150px;
+  margin-left: 150px;
+}
+
+h1, h2, a {
+  margin-right: 150px;
+  margin-left: 150px;
+}
