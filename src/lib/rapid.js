@@ -10,6 +10,9 @@ export default client
 export const collections = client
   .collection(COLLECTION_NAME)
 
+export const liveCollections = client
+  .collection('data-loggers-live');
+
 export const inventory = client
   .collection(INVENTORY_NAME)
 

@@ -14,11 +14,14 @@ class List extends React.Component {
       collections: collections,
       inventory: inventory,
       redirect: false,
-      to: '/NodeDeets'
+      to: '/NodeDeets',
+      nodeID: ''
 
     }
+  
     this.goToNodeDeets = this.goToNodeDeets.bind(this);
   }
+
 
   componentDidMount() {
     const { collections } = this.state;
@@ -40,20 +43,23 @@ class List extends React.Component {
   }
 
   goToNodeDeets(nodeID) {
-    this.setState({ redirect: true });
+    this.setState({ redirect: true, to: '/NodeDeets', nodeID: nodeID });
+
   }
 
   render() {
     return (
       <div className="list">
         <div className="nodes">
-         {
+          {
         
           this.state.inventory[0] !== undefined ? this.state.inventory.map((node) => {
             return <div key={ node.body.nodeID } onClick={ () => { this.goToNodeDeets(node.body.nodeID) }  } nodeId={ node.body.nodeID }>{ node.body.nodeID }</div>
           })  : console.log('not yet working')
         }
+        
         </div>
+
         <div className="redirect">
           {this.state.redirect ? <Redirect to={this.state.to}/> : <div></div>}
         </div>

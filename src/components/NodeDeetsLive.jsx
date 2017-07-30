@@ -3,14 +3,12 @@ import subscribeCollections from '../lib/subscribe-collections.js'
 import subscribeInventory from '../lib/subscribe-inventory.js'
 import { collections } from '../lib/rapid.js';
 import { inventory } from '../lib/rapid.js';
-import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import ReactDOM from 'react-dom';
 import { VictoryChart, VictoryScatter, VictoryTheme, VictoryAxis, VictoryTooltip, VictoryLegend, VictoryLine } from 'victory';
 import rapid from 'rapid-io';
 
-class NodeDeets extends React.Component {
+class NodeDeetsLive extends React.Component {
 
   constructor(props) {
     super(props);
@@ -24,17 +22,32 @@ class NodeDeets extends React.Component {
       redirect: false,
       to: '/NodeDeetsLive'
     }
-    this.goToLive = this.goToLive.bind(this);
   }
 
   componentDidMount() {
     const { collections } = this.state;
     const { inventory } = this.state;
+
+    const rapidClient = rapid.createClient('NDA1OWE0MWo1b3AzYTJwLnJhcGlkLmlv');
+    const datasets = rapidClient.collection('data-loggers-4');
+
+  // filter all incomplete toDos older than a month
+    const ONE_HOUR = (60 * 60)
+    const QUARTER_HOUR = (15 * 60)
+    const TEN_MINUTES = (10 * 60)
+    const FIVE_MINUTES = (5 * 60)
+    // const TIMESTAMP = (Date.now() / 1000) - ONE_HOUR
+    // const TIMESTAMP = (Date.now() / 1000) - QUARTER_HOUR
+    // const TIMESTAMP = (Date.now() / 1000) - TEN_MINUTES
+    const TIMESTAMP = (Date.now() / 1000) - FIVE_MINUTES
+    const dataFromPastHour = datasets.filter({
+     and: [
+      { nodeID: '1' },
+      { $created: { gt: TIMESTAMP } }
+     ]
+    })
     
-    const rapidClient = rapid.createClient('NDA1OWE0MWo1b3AzYTJwLnJhcGlkLmlv')
-    rapidClient
-      .collection('data-loggers')
-      .filter({nodeID: '1'})
+    dataFromPastHour
       .subscribe(dataset => {
         console.log(dataset)
         let mappedDataset = dataset.map(dataEntry => dataEntry.body)
@@ -74,11 +87,9 @@ class NodeDeets extends React.Component {
   render() {
     return (
       <div>
-        <h1>Node Readings</h1>
+        <h1>Node Readings LIVE</h1>
         <h2>Temperature Sensors</h2>
-        <div>
-        <Link to="/NodeDeetsLive">Live</Link>
-        </div>
+        <button onclick = { () => { } }>LIVE</button>
         <VictoryChart
           scale={ { x: "time" } }
           theme={VictoryTheme.material}
@@ -146,13 +157,10 @@ class NodeDeets extends React.Component {
           />
         </VictoryChart>
 
-        <div className="redirect">
-          {this.state.redirect ? <Redirect to={this.state.to}/> : <div></div>}
-        </div>
 
       </div>
     );
   }
 }
 
-export default NodeDeets;
+export default NodeDeetsLive;

@@ -10,6 +10,7 @@ import Component from 'react';
 import HomePage from './components/HomePage.jsx';
 import List from './components/List.jsx';
 import NodeDeets from './components/NodeDeets.jsx';
+import NodeDeetsLive from './components/NodeDeetsLive.jsx';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
@@ -28,6 +29,7 @@ class App extends React.Component {
             <div>
               <Route exact path='/' component={ HomePage }/>
               <Route path='/NodeDeets' component={ NodeDeets }/> 
+              <Route path='/NodeDeetsLive' component={ NodeDeetsLive }/> 
             </div>
           </Router>
         </MuiThemeProvider>
