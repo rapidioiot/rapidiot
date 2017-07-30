@@ -34,10 +34,18 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="homepage">
-        <DropDownMenu value = {this.state.value} onChange = {this.handleChange}>
-          <MenuItem value={1} primaryText="Nodes"/>
-          <MenuItem value={2} primaryText="Location"/>
-        </DropDownMenu>
+        <h1>
+          Rapid IoT Dashboard
+        </h1>
+        <div className='dropdown'>
+          <DropDownMenu value = {this.state.value} onChange = {this.handleChange}>
+            <MenuItem value={1} primaryText="Nodes"/>
+            <MenuItem value={2} primaryText="Location"/>
+          </DropDownMenu>
+        </div>
+        <div className='input'>
+          <input type="text"></input>
+        </div>
         <List filterType={this.state.filterType}/>
       </div>
     );

@@ -51,10 +51,18 @@ class List extends React.Component {
     return (
       <div className="list">
         <div className="nodes">
+          <table>
+            <tr>
+              <th>Node</th>
+              <th>Location</th>
+              <th>Status</th>
+            </tr>
+
+          </table>
           {
         
           this.state.inventory[0] !== undefined ? this.state.inventory.map((node) => {
-            return <div key={ node.body.nodeID } onClick={ () => { this.goToNodeDeets(node.body.nodeID) }  } nodeId={ node.body.nodeID }>{ node.body.nodeID }</div>
+            return <tr key={ node.body.nodeID } onClick={ () => { this.goToNodeDeets(node.body.nodeID) }  } nodeId={ node.body.nodeID }><td>{ node.body.nodeID }</td> <td>San Francisco</td> <td>Active</td></tr>
           })  : console.log('not yet working')
         }
         

@@ -89,7 +89,6 @@ class NodeDeetsLive extends React.Component {
       <div>
         <h1>Node Readings LIVE</h1>
         <h2>Temperature Sensors</h2>
-        <button onclick = { () => { } }>LIVE</button>
         <VictoryChart
           scale={ { x: "time" } }
           theme={VictoryTheme.material}
