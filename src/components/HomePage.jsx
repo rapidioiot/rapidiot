@@ -18,10 +18,9 @@ class HomePage extends React.Component {
       value: 1,
       filterType: ''
     };
-  
+
     this.handleChange = this.handleChange.bind(this);
   }
-
 
   handleChange (event, index, value) {
     this.setState({value});
