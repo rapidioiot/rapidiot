@@ -25,7 +25,6 @@ class App extends React.Component {
         <MuiThemeProvider>
           <HomePage />
         </MuiThemeProvider>
-        <List />
       </div>
     );
   }

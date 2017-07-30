@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import List from './List.jsx';
+
 
 const styles = {
   customWidth: {
@@ -9,6 +11,7 @@ const styles = {
 };
 
 class HomePage extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -36,6 +39,7 @@ class HomePage extends React.Component {
           <MenuItem value={1} primaryText="Nodes"/>
           <MenuItem value={2} primaryText="Location"/>
         </DropDownMenu>
+        <List filterType={this.state.filterType}/>
       </div>
     );
   }
